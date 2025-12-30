@@ -56,7 +56,7 @@ async function main() {
         console.log(`   Status: ${status}`);
         console.log(`   Merkle Root: ${rootHex}`);
 
-        console.log('\nNote: Wait 5-10 seconds before verifying with mirror node to allow propagation.');
+        console.log('\nNote: Wait ~5 seconds before verifying with mirror node to allow propagation.');
     } catch (err) {
         console.error('Error submitting message:', err);
         process.exit(1);

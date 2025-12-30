@@ -29,8 +29,8 @@ async function main() {
     console.log(`Record ID: ${recordId}`);
 
     // 1. Load Manifest (Trusted Source needed for Root)
-    // In a real app, you'd get the root from the chain (like script 03), 
-    // but here we simulate having the "Trusted Root" from the mirror node.
+    // In a real app, you'd get the root from the chain, 
+    // but here we simulate having the "Trusted Root" from the mirror node for simplicity.
     const manifestPath = path.join(__dirname, '../data/manifest.json');
     const manifest = JSON.parse(fs.readFileSync(manifestPath));
 
