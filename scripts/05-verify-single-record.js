@@ -24,7 +24,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 async function main() {
-    console.log('--- 4. Verify Single Record (Merkle Integrity) ---');
+    console.log('--- 5. Verify Single Record (Merkle Integrity) ---');
     console.log(`Dataset: ${datasetName}`);
     console.log(`Record ID: ${recordId}`);
 

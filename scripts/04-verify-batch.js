@@ -18,7 +18,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 async function main() {
-    console.log('--- 3. Verify Batch from Mirror Node ---');
+    console.log('--- 4. Verify Batch from Mirror Node ---');
     console.log(`Using dataset: ${datasetName} (Local)`);
 
     const topicId = process.env.TOPIC_ID;

@@ -19,10 +19,8 @@ for (let i = 0; i < args.length; i++) {
 }
 
 async function main() {
-    console.log('--- 2. Anchor Batch Merkle Root ---');
+    console.log('--- 3. Anchor Batch Merkle Root on HCS ---');
     console.log(`Using dataset: ${datasetName}`);
-
-    const startTime = Date.now();
 
     // 1. Load Dataset
     const filePath = path.join(__dirname, `../data/${datasetName}.json`);
@@ -31,25 +29,16 @@ async function main() {
         process.exit(1);
     }
     const batch = JSON.parse(fs.readFileSync(filePath));
-    console.log(`1) Loaded ${batch.length} records.`);
 
-    // 2. Canonicalize & 3. Hash Leaves
+    // 2, 3, 4. Recompute Root (Deterministic)
     const leaves = batch.map(record => sha256(canonicalize(record)));
-    console.log('2, 3) Canonicalized and computed leaf hashes.');
-
-    // 4. Compute Root
-    const rootBuffer = computeRoot(leaves);
-    const rootHex = rootBuffer.toString('hex');
-    console.log(`4) Computed Merkle Root: ${rootHex}`);
+    const rootHex = computeRoot(leaves).toString('hex');
+    console.log(`1) Recomputed local Merkle Root: ${rootHex}`);
 
     // 5. Build Anchor Message
     const anchorMessage = createAnchorMessage(rootHex, datasetName, batch.length);
     const messageString = JSON.stringify(anchorMessage);
-    console.log(`5) Built anchor message (${messageString.length} bytes).`);
-
-    if (messageString.length > 1024) {
-        console.warn('⚠️  Warning: Message size > 1024 bytes. HCS chunking would be required for standard messages.');
-    }
+    console.log(`2) Built anchor message (${messageString.length} bytes).`);
 
     // 6. Submit to HCS
     const topicId = process.env.TOPIC_ID;
@@ -67,7 +56,6 @@ async function main() {
         console.log(`   Status: ${status}`);
         console.log(`   Merkle Root: ${rootHex}`);
 
-        // Warn about latency
         console.log('\nNote: Wait 5-10 seconds before verifying with mirror node to allow propagation.');
     } catch (err) {
         console.error('Error submitting message:', err);
