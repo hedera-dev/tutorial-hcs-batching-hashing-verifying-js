@@ -4,4 +4,8 @@ node_modules/
 data/
 !data/batch-10.json
 !data/proofs-10.json
+!data/batch-100.json
+!data/proofs-100.json
+!data/batch-1000.json
+!data/proofs-1000.json
 !data/manifest.json

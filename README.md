@@ -56,7 +56,7 @@ Open `.env` and fill in your Testnet credentials:
 
 ## 2. Understand the dataset you will anchor
 
-There are two datasets available in `data/`: `batch-10.json` and `batch-100.json`.
+There are three datasets available in `data/`: `batch-10.json`, `batch-100.json`, and `batch-1000.json`.
 Each record looks like this:
 
 ```json

@@ -38,6 +38,7 @@ async function main() {
     let trustedRoot = '';
     if (datasetName === 'batch-10') trustedRoot = manifest.expectedMerkleRoot_batch10;
     else if (datasetName === 'batch-100') trustedRoot = manifest.expectedMerkleRoot_batch100;
+    else if (datasetName === 'batch-1000') trustedRoot = manifest.expectedMerkleRoot_batch1000;
 
     if (!trustedRoot) {
         console.error('Unknown dataset root in manifest.');
