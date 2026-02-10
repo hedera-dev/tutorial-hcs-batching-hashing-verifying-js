@@ -63,13 +63,17 @@ function main() {
     const batch100 = generateBatch(100);
     const root100 = processBatch('batch-100', batch100);
 
+    const batch1000 = generateBatch(1000);
+    const root1000 = processBatch('batch-1000', batch1000);
+
     const manifest = {
         datasetVersion: "v1",
         hashAlgorithm: "sha256",
         canonicalization: "Recursive key sort, no whitespace, UTF-8. Arrays preserve order.",
         merkleTreeRule: "SHA-256(left || right). Odd nodes duplicate last. Raw bytes concatenation.",
         expectedMerkleRoot_batch10: root10,
-        expectedMerkleRoot_batch100: root100
+        expectedMerkleRoot_batch100: root100,
+        expectedMerkleRoot_batch1000: root1000
     };
 
     fs.writeFileSync(path.join(DATA_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2));
@@ -77,6 +81,7 @@ function main() {
     console.log('Data generation complete.');
     console.log('Batch 10 Root:', root10);
     console.log('Batch 100 Root:', root100);
+    console.log('Batch 1000 Root:', root1000);
 }
 
 main();
